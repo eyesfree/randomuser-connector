@@ -1,7 +1,7 @@
 HELP.md
 .gradle
 build/
-gradle/wrapper/**
+gradle/wrapper/
 gradlew
 gradlew.bat
 !**/src/main/**/build/
@@ -37,3 +37,4 @@ out/
 
 ### VS Code ###
 .vscode/
+/gradle/
