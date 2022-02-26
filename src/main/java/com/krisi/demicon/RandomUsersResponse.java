@@ -8,19 +8,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class RandomUsersResponse {
-	public List<Result> results;
-	public Info info;
+	public List<User> results;
+
+	public List<User> getResults() {
+		return results;
+	}
 
 	@JsonCreator
-	public RandomUsersResponse(@JsonProperty("results") List<Result> results, @JsonProperty("info") Info info) {
+	public RandomUsersResponse(@JsonProperty("results") List<User> results) {
 		this.results = results;
-		this.info = info;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder usersString = new StringBuilder();
-		for (Result user : results) {
+		for (User user : results) {
 			usersString.append(user);
 			usersString.append("\n");
 		}
