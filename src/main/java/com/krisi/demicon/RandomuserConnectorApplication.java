@@ -6,14 +6,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
+@EnableScheduling
 public class RandomuserConnectorApplication {
 
-	@Autowired
-	public UsersRepository repository; 
+
 	
 	public static void main(String[] args) {
 		SpringApplication.run(RandomuserConnectorApplication.class, args);
@@ -24,15 +26,17 @@ public class RandomuserConnectorApplication {
 		return builder.build();
 	}
 	
-	@Bean
-	public CommandLineRunner run(RestTemplate restTemplate) throws Exception {
-		return args -> {
-			RandomUsersResponse quote = restTemplate.getForObject(
-					"https://randomuser.me/api/?results=10", RandomUsersResponse.class);
-			System.out.println(quote.toString());
-			
-			repository.saveAll(quote.results);
-		};
-	}
+//	@Bean
+//	public CommandLineRunner run() throws Exception {
+//		return args -> {
+//			scheduleFixedRateTaskAsync();		
+//		};
+//	}
+//	
+//	@Scheduled(fixedRate = 1000)
+//    public void scheduleFixedRateTaskAsync() throws InterruptedException {
+//        System.out.println(
+//          "Fixed rate task async - " + System.currentTimeMillis() / 1000);
+//    }
 	
 }

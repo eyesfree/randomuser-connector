@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -24,7 +25,9 @@ public final class User {
 	@OneToOne(cascade = {CascadeType.ALL})
 	public Name name;
 	public String email;
-	//public final Location location;
+	
+	@ManyToOne(cascade = {CascadeType.ALL})
+	public Location location;
 
 	@JsonIgnore
 	public Long getId() {
@@ -56,10 +59,14 @@ public final class User {
 	}
 
 
+	public Location getLocation() {
+		return location;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder userString = new StringBuilder();
-		userString.append("Name: ").append(name.toString()).append(" Gender: ").append(gender);
+		userString.append("Name: ").append(name.toString()).append(" Gender: ").append(gender).append(" Location: ").append(location.country);
 		return userString.toString();
 	}
 
@@ -68,10 +75,12 @@ public final class User {
 
 	@JsonCreator
 	public User(@JsonProperty("gender") String gender, @JsonProperty("name") Name name,
-			@JsonProperty("email") String email) {
+			@JsonProperty("email") String email, @JsonProperty("location") Location location) {
+		this.location = null;
 		this.gender = gender;
 		this.name = name;
 		this.email = email;
+		this.location = location;
 	}
 
     @Override

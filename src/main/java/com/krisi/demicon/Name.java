@@ -8,7 +8,6 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -28,13 +27,39 @@ public final class Name {
 		this.id = id;
 	}
 
-	public final String title;
-	public final String first;
-	public final String last;
+	public String title;
+	public String first;
+	public String last;
 	
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setFirst(String first) {
+		this.first = first;
+	}
+
+	public void setLast(String last) {
+		this.last = last;
+	}
+
+	public String getFirst() {
+		return first;
+	}
+
+	public String getLast() {
+		return last;
+	}
+
 	@OneToOne(mappedBy = "name")
     private User user;
 
+	public Name() {}
+	
 	@JsonCreator
 	public Name(@JsonProperty("title") String title, @JsonProperty("first") String first,
 			@JsonProperty("last") String last) {

@@ -26,7 +26,7 @@ class RandomuserConnectorApplicationTests {
 	public void shouldUpdateExistingEntryInDBWithoutSave() {
 
 				User bob = new User("male", 
-				  new Name("Mr", "Jane", "Stone"), "jane.stone@protonmail.com");
+				  new Name("Mr", "Jane", "Stone"), "jane.stone@protonmail.com", new Location("Bulgaria"));
 
 	    User bobSaved = repository.save(bob);
 

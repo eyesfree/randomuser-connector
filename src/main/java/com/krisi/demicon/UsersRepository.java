@@ -10,4 +10,6 @@ public interface UsersRepository extends CrudRepository<User, Long> {
 	List<User> findByGender(String gender);
 
 	User findById(long id);
+	
+	List<User> findByLocation(Location location);
 }
