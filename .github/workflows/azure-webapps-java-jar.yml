@@ -21,7 +21,7 @@ name: Build and deploy JAR app to Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: randomuser-connector    # set this to the name of your Azure Web App
-  JAVA_VERSION: '11'                  # set this to the Java version to use
+  JAVA_VERSION: '1.11.x'                  # set this to the Java version to use
 
 on:
   push:
@@ -40,7 +40,6 @@ jobs:
         uses: actions/setup-java@v2.3.1
         with:
           java-version: ${{ env.JAVA_VERSION }}
-          cache: 'maven'
 
       - name: Build with Gradle
         run: gradle assemble
