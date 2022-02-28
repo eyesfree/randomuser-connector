@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://randomusers-ui.azurewebsites.net/"})
 @RepositoryRestResource
 public interface UsersRepository extends CrudRepository<User, Long> {
 	List<User> findByGender(String gender);
